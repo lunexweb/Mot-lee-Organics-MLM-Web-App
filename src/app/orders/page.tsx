@@ -18,6 +18,7 @@ import {
   XCircle
 } from 'lucide-react'
 import Link from 'next/link'
+import { COMPANY_EFT_DETAILS } from '@/lib/config'
 
 interface OrderItem {
   id: string
@@ -269,6 +270,14 @@ export default function OrdersPage() {
                 <option value="cancelled">Cancelled</option>
               </select>
             </div>
+          </div>
+
+          {/* Contact Support */}
+          <div className="mb-4 p-3 bg-blue-50 border border-blue-200 rounded">
+            <p className="text-sm font-medium text-gray-800">Need help or sending Proof of payment?</p>
+            <p className="text-sm text-gray-700">email: {COMPANY_EFT_DETAILS.salesEmail}</p>
+            <p className="text-sm text-gray-700">or</p>
+            <p className="text-sm text-gray-700">whatsapp number: {COMPANY_EFT_DETAILS.whatsapp}</p>
           </div>
 
           {orders.length === 0 ? (

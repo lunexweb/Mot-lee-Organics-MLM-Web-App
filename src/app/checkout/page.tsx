@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation'
 import { useAuth } from '@/contexts/AuthContext'
 import { supabase } from '@/lib/supabase'
 import { formatCurrency, generateOrderNumber, generatePaymentReference } from '@/lib/utils'
+import { COMPANY_EFT_DETAILS } from '@/lib/config'
 import { ArrowLeft } from 'lucide-react'
 
 interface ProductRef {
@@ -295,6 +296,14 @@ export default function CheckoutPage() {
             <div className="border-t border-gray-200 pt-3 flex items-center justify-between">
               <span className="text-lg font-semibold text-gray-900">Total</span>
               <span className="text-lg font-bold text-primary-600">{formatCurrency(getCartTotal())}</span>
+            </div>
+
+            {/* Contact Support for Proof of Payment */}
+            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded">
+              <p className="text-sm font-medium text-gray-800">Send Proof of payment</p>
+              <p className="text-sm text-gray-700">email: {COMPANY_EFT_DETAILS.salesEmail}</p>
+              <p className="text-sm text-gray-700">or</p>
+              <p className="text-sm text-gray-700">whatsapp number: {COMPANY_EFT_DETAILS.whatsapp}</p>
             </div>
           </div>
         </div>
