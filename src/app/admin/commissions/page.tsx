@@ -62,9 +62,25 @@ export default function CommissionManagement() {
   const [groupByUser, setGroupByUser] = useState(false)
   const [payables, setPayables] = useState<PayableRow[]>([])
   const [payingUserId, setPayingUserId] = useState<string | null>(null)
+  const [rateByLevel, setRateByLevel] = useState<Record<number, number>>({ 1: 0.10, 2: 0.05, 3: 0.02 })
 
   useEffect(() => {
     if (userProfile?.role === 'admin') {
+      // Load commission rates for dynamic labels
+      supabase
+        .from('commission_rates')
+        .select('level, percentage, is_active')
+        .order('level', { ascending: true })
+        .then(({ data, error }) => {
+          if (!error && data) {
+            const next: Record<number, number> = { 1: 0.10, 2: 0.05, 3: 0.02 }
+            data.forEach(r => {
+              if (r.is_active) next[r.level as 1|2|3] = Number(r.percentage)
+            })
+            setRateByLevel(next)
+          }
+        })
+
       if (groupByUser) {
         fetchPayables()
       } else {
@@ -388,7 +404,7 @@ export default function CommissionManagement() {
                 <div className="w-3 h-3 bg-green-500 rounded-full"></div>
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Direct Referrals (10%)</p>
+                <p className="text-sm font-medium text-gray-600">Direct Referrals ({(rateByLevel[1] * 100).toFixed(0)}%)</p>
                 <p className="text-xl font-semibold text-gray-900">{stats.level1Commissions}</p>
               </div>
             </div>
@@ -401,7 +417,7 @@ export default function CommissionManagement() {
                 <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Second Level (5%)</p>
+                <p className="text-sm font-medium text-gray-600">Second Level ({(rateByLevel[2] * 100).toFixed(0)}%)</p>
                 <p className="text-xl font-semibold text-gray-900">{stats.level2Commissions}</p>
               </div>
             </div>
@@ -414,7 +430,7 @@ export default function CommissionManagement() {
                 <div className="w-3 h-3 bg-purple-500 rounded-full"></div>
               </div>
               <div className="ml-3">
-                <p className="text-sm font-medium text-gray-600">Third Level (2%)</p>
+                <p className="text-sm font-medium text-gray-600">Third Level ({(rateByLevel[3] * 100).toFixed(0)}%)</p>
                 <p className="text-xl font-semibold text-gray-900">{stats.level3Commissions}</p>
               </div>
             </div>
