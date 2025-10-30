@@ -66,7 +66,7 @@ export default function OrderDetailsPage() {
       }
 
       const opt = {
-        margin: [10, 10, 10, 10],
+        margin: [10, 10, 10, 10] as [number, number, number, number],
         filename: `Invoice-${order.order_number}.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
         html2canvas: { 
