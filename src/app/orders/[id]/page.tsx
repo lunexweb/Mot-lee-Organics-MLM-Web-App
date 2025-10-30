@@ -304,6 +304,13 @@ export default function OrderDetailsPage() {
                 <div className="font-bold text-primary-700 text-lg print:text-base">{reference}</div>
               </div>
             </div>
+            {/* Proof of payment contact */}
+            <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded print:bg-transparent print:border-0">
+              <p className="text-sm text-gray-800 print:text-xs font-medium">Send Proof of payment</p>
+              <p className="text-sm text-gray-700 print:text-xs">email: {COMPANY_EFT_DETAILS.salesEmail}</p>
+              <p className="text-sm text-gray-700 print:text-xs">or</p>
+              <p className="text-sm text-gray-700 print:text-xs">whatsapp number: {COMPANY_EFT_DETAILS.whatsapp}</p>
+            </div>
             <div className="mt-3 print:mt-2 text-xs text-gray-500 print:text-[10px]">{COMPANY_EFT_DETAILS.invoiceFooter}</div>
           </div>
         </div>

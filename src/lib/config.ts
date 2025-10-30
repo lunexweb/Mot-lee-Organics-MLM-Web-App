@@ -4,6 +4,8 @@ export const COMPANY_EFT_DETAILS = {
   accountType: 'Current Account',
   branchCode: '198765',
   swiftCode: 'NEDSZAJJ',
+  salesEmail: 'sales@motleeorganics.com',
+  whatsapp: '+27 66 147 4766',
   invoiceFooter: 'Powered by www.lunexweb.com',
 }
 
