@@ -68,7 +68,7 @@ export default function OrderDetailsPage() {
       const opt = {
         margin: [10, 10, 10, 10] as [number, number, number, number],
         filename: `Invoice-${order.order_number}.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
+        image: { type: 'jpeg' as const, quality: 0.98 },
         html2canvas: { 
           scale: 2,
           useCORS: true,
@@ -83,7 +83,7 @@ export default function OrderDetailsPage() {
         pagebreak: { mode: 'avoid-all' } as any
       }
 
-      await html2pdf().set(opt).from(element).save()
+      await html2pdf().set(opt as any).from(element).save()
     } catch (error) {
       console.error('Error generating PDF:', error)
       setAlertMsg('Failed to download PDF. Please try the Print button instead.')
