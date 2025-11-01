@@ -39,18 +39,23 @@ interface Product {
 }
 
 const PRODUCT_CATEGORIES = [
-  'Teas',
-  'Chlorophyll Juice',
-  'Weight Loss Products',
-  'Weight Gain Products',
-  'Toners',
-  'Masks',
-  'Scrubs',
+  'Charcoal',
   'Chlorophyll Drops',
+  'Chlorophyll Juice',
   'Collagen',
+  'Combos',
+  'Creams',
+  'Lotions',
+  'Masks',
+  'Oils',
+  'Scrubs',
   'Serums',
   'Soaps',
-  'Lotions'
+  'Teas',
+  'Toners',
+  'Turmeric',
+  'Weight Gain Products',
+  'Weight Loss Products'
 ]
 
 export default function ProductManagement() {
